@@ -1,0 +1,198 @@
+body {
+  font-family: "Roboto";
+  color: #4a4a4a;
+}
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ededed;
+  padding: 11px;
+  height: 58px;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1000;
+}
+.header-options {
+  display: flex;
+  justify-content: right;
+}
+.header-option {
+  padding-left: 20px;
+  padding-top: 20px;
+  font-size: 18px;
+}
+.search-box {
+  border: 1px solid #ededed;
+  margin: 24px;
+  min-width: 250px;
+  min-width: 250px;
+  height: 190px;
+  padding: 24px;
+  padding-right: 66px;
+  padding-top: 14px;
+  position: sticky;
+  top: 104px;
+}
+.select {
+  display: block;
+  width: 100%;
+  margin: 18px;
+}
+.full-width {
+  width: 100%;
+  margin-top: 15px;
+  height: 34px;
+  border-radius: 0px;
+}
+.right-align {
+  display: flex;
+  justify-content: flex-end;
+}
+.flex-display {
+  display: flex;
+  justify-content: left;
+}
+.footer {
+  text-align: center;
+  border-top: 1px solid #ededed;
+  padding: 31px;
+  height: 18px;
+}
+.button {
+  background-color: #ea7f28;
+  color: white;
+  min-width: 128px;
+  max-width: 128px;
+  height: 32px;
+}
+.button:hover {
+  background: #d37324;
+}
+.title-1 {
+  font-size: 32px;
+}
+.title-2 {
+  font-size: 18px;
+}
+.title-3 {
+  font-size: 14px;
+}
+.title-4 {
+  font-size: 12px;
+}
+.bold {
+  font-weight: bold;
+}
+.link {
+  color: #ea7f28;
+  text-decoration: none;
+}
+.link:hover {
+  text-decoration: underline;
+}
+.list-wrapper {
+  margin: 24px;
+  margin-left: 0px;
+  width: 100%;
+}
+.car-tile {
+  display: flex;
+  justify-content: left;
+  border: 1px solid #ededed;
+  margin-bottom: 14px;
+  padding: 24px;
+  height: 64px;
+}
+.car-content {
+  margin-left: 24px;
+  min-width: 250px;
+}
+.image-loading {
+  height: 70px;
+  width: 90px;
+  background-color: #ededed;
+}
+.image-border {
+  border: 1px solid #ededed;
+}
+
+.loading {
+  color: transparent;
+  background-color: #ededed;
+}
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 14px;
+}
+.pagination-item {
+  margin: 10px;
+  cursor: pointer;
+}
+.link-color {
+  color: #ea7f28;
+}
+.tile-item {
+  margin-bottom: 8px;
+}
+.car-detail-image {
+  width: 100%;
+  height: 300px;
+}
+.details-wrapper {
+  padding: 120px;
+  padding-top: 24px;
+}
+.bottom-margin {
+  margin-bottom: 20px;
+}
+.fav-box {
+  border: 1px solid #ededed;
+  padding: 24px;
+  width: 236px;
+  height: 100px;
+}
+.button-margin {
+  margin-top: 20px;
+  margin-left: 107px;
+}
+.center-align {
+  display: flex;
+  justify-content: center;
+}
+.details-layout {
+  width: 40%;
+  min-width: 160px;
+  margin-right: 25px;
+}
+.not-found-wrapper {
+  text-align: center;
+  top: 45%;
+  height: 50vh;
+  margin-top: 30vh;
+}
+.select-option {
+  text-transform: capitalize;
+  font-size: 18px;
+}
+.select-option:focus {
+  background: #ea7f28;
+  color: white;
+}
+.select-option:hover {
+  background: #ea7f28;
+  color: white;
+}
+.select-label {
+  font-size: 18px;
+  margin-left: -14px;
+  color: #4a4a4a;
+}
+.MuiSelect-select:focus {
+  background: white;
+  border-radius: 0;
+}
+.page-details-wrapper {
+  min-height: 90vh;
+}
