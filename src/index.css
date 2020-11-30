@@ -135,6 +135,7 @@ body {
 .car-detail-image {
   width: 100%;
   height: 300px;
+  border-bottom: 1px solid #ededed;
 }
 .details-wrapper {
   padding: 120px;
