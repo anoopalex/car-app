@@ -1,12 +1,15 @@
 import { Button } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useLocalStorage } from "../components/UseLocalStorage";
 import { carDescription, chooseFavoriteDescription } from "../constants";
-import { useLocalStorage } from "../custom-hooks/UseLocalStorage";
 import { getCarDetailsAPI } from "../endpoints";
 import { ICarDetails } from "../types";
 import NotFound from "./NotFound";
 
+/**
+ * Car details page
+ */
 const CarDetails = () => {
   let { id } = useParams<{ id: string }>();
   const [carDetails, setCarDetails] = React.useState<ICarDetails>();
@@ -24,6 +27,7 @@ const CarDetails = () => {
   }, [id]);
 
   if (hasError) {
+    // Display not found when API fails
     return <NotFound />;
   }
 
@@ -81,6 +85,7 @@ const CarDetails = () => {
             disabled={!carDetails}
             onClick={toggleFavoriteStatus as () => void}
           >
+            {/* Add/ Remove Car from favorites */}
             {favoriteStatus ? "Remove" : "Save"}
           </Button>
         </div>

@@ -5,6 +5,10 @@ import Footer from "./components/Footer";
 import Routes from "./Routes";
 import { theme } from "./theme";
 
+/**
+ * App 
+ * Top level component
+ */
 const App = () => (
   <ThemeProvider theme={theme}>
     <StylesProvider injectFirst>

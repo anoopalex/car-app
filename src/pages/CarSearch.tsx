@@ -20,6 +20,9 @@ import {
   IManufacturerOptionResponse,
 } from "../types";
 
+/**
+ * Car search page
+ */
 const CarSearch = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [carSearchParams, setCarSearchParams] = React.useState(initialCarSearchParams);
@@ -61,9 +64,12 @@ const CarSearch = () => {
       });
     }
   };
+
   const onApplyFilter = () => {
+    // Set car search request params
     setCarSearchRequestParams(carSearchParams);
   };
+
   const onCarSearch = (nextPage: number) => () => {
     if (nextPage > 0 && nextPage <= carSearchResult.totalPageCount) {
       setIsLoading(true);

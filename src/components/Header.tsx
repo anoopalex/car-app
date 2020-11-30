@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/logo.png";
+import { logo } from "../constants";
 
 const options: string[] = ["Purchase", "My Orders", "Sell"];
 

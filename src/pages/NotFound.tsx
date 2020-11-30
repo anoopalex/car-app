@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
+import { logo } from "../constants";
 
+/**
+ * Not found page
+ */
 const NotFound = () => {
   return (
     <div className="not-found-wrapper">

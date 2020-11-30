@@ -2,7 +2,7 @@ import { ICar, ICarSearchResult } from "./types";
 
 export const baseUrl = "https://auto1-mock-server.herokuapp.com";
 export const initialCarSearchParams = { color: "", manufacturer: "", page: 1 };
-
+export const logo = "https://auto1-js-task-api--mufasa71.repl.co/images/logo.png";
 const defaultCarDetails: ICar = {
   stockNumber: 0,
   manufacturerName: "",
