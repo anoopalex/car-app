@@ -32,11 +32,13 @@ const CarSearch = () => {
   const [manufacturerOptions, setManufacturerOptions] = React.useState<string[]>([]);
 
   useEffect(() => {
+    // Fetch all available car colors
     getCarColorsAPI().then((colorOptionResponse: IColorOptionResponse) => {
       if (colorOptionResponse?.colors) {
         setColorOptions(colorOptionResponse.colors);
       }
     });
+    // Fetch all available car manufacturers
     getCarManufacturersAPI().then(
       (manufacturerOptionResponse: IManufacturerOptionResponse) => {
         if (manufacturerOptionResponse?.manufacturers) {
@@ -82,8 +84,10 @@ const CarSearch = () => {
           ...carSearchParams,
           page: nextPage,
         });
+      })
+      .finally(() => {
         setIsLoading(false);
-      });
+      })
     }
   };
 
@@ -136,7 +140,11 @@ const CarSearch = () => {
         </FormControl>
         <div className="select">
           <div className="right-align">
-            <Button className="button" onClick={onApplyFilter}>
+            <Button
+              className="button"
+              onClick={onApplyFilter}
+              disabled={isLoading}
+            >
               Filter
             </Button>
           </div>
@@ -144,10 +152,14 @@ const CarSearch = () => {
       </div>
       <div className="list-wrapper">
         <div className="title-2 bold tile-item">Available cars</div>
-        <div className="title-2 tile-item">
-          {`Showing ${isLoading ? 0 : carSearchResult.cars.length} of ${
-            carSearchResult.totalCarsCount
-          }`}
+        <div
+          className={
+            isLoading
+              ? "title-2 tile-item loading-element white-background"
+              : "title-2 tile-item"
+          }
+        >
+          {`Showing ${carSearchResult.cars.length} of ${carSearchResult.totalCarsCount}`}
         </div>
         <div>
           {carSearchResult.cars.map((car: ICar, index: number) => (
@@ -164,7 +176,13 @@ const CarSearch = () => {
           >
             Previous
           </div>
-          <div className="pagination-item">{`Page ${carSearchParams.page} of ${carSearchResult.totalPageCount}`}</div>
+          <div
+            className={
+              isLoading
+                ? "pagination-item loading-element white-background pagination-content"
+                : "pagination-item pagination-content"
+            }
+          >{`Page ${carSearchParams.page} of ${carSearchResult.totalPageCount}`}</div>
           <div
             className="pagination-item link-color"
             onClick={onCarSearch(carSearchParams.page + 1)}

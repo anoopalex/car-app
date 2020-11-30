@@ -206,3 +206,9 @@ body {
 .loading-element::after {
   content: ".";
 }
+.white-background {
+  background: white;
+}
+.pagination-content {
+  min-width: 120px;
+}
