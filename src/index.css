@@ -87,6 +87,7 @@ body {
 .link {
   color: #ea7f28;
   text-decoration: none;
+  margin: 5px;
 }
 .link:hover {
   text-decoration: underline;
@@ -115,11 +116,6 @@ body {
 }
 .image-border {
   border: 1px solid #ededed;
-}
-
-.loading {
-  color: transparent;
-  background-color: #ededed;
 }
 .pagination-wrapper {
   display: flex;
@@ -194,5 +190,18 @@ body {
   border-radius: 0;
 }
 .page-details-wrapper {
-  min-height: 90vh;
+  min-height: 800px;
+}
+.MuiButton-root.Mui-disabled {
+  color: #efd6d6;
+}
+
+.loading-element {
+  content: "...";
+  color: transparent;
+  background-color: #ededed;
+}
+
+.loading-element::after {
+  content: ".";
 }

@@ -1,13 +1,4 @@
-const baseUrl = "https://auto1-mock-server.herokuapp.com";
-
-const request = (url: string, method = "GET") =>
-  fetch(url, {
-    method: method,
-    headers: {
-      "Content-Type": "text/plain",
-      "Cache-Control": "private",
-    },
-  }).then((response) => response.json());
+import { baseUrl } from "./constants";
 
 export const getCarsAPI = (params: Record<string, string>) => {
   return request(`${baseUrl}/api/cars?` + new URLSearchParams(params));
@@ -24,3 +15,12 @@ export const getCarManufacturersAPI = () => {
 export const getCarDetailsAPI = (stockNumber: string) => {
   return request(`${baseUrl}/api/cars/${stockNumber}`);
 };
+
+const request = (url: string, method = "GET") =>
+  fetch(url, {
+    method: method,
+    headers: {
+      "Content-Type": "text/plain",
+      "Cache-Control": "private",
+    },
+  }).then((response) => response.json());

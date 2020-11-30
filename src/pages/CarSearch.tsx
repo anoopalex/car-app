@@ -6,7 +6,7 @@ import {
   Select,
 } from "@material-ui/core";
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import CarTile from "../components/CarTile";
 import { initialCarSearchParams, initialCarSearchResult } from "../constants";
 import {
   getCarColorsAPI,
@@ -51,11 +51,15 @@ const CarSearch = () => {
     onCarSearch(1)();
   }, [carSearchRequestParams]);
 
-  const onCarSearchParamChange = (e: React.ChangeEvent<any>) => {
-    setCarSearchParams({
-      ...carSearchParams,
-      [e.target.name]: e.target.value,
-    });
+  const onCarSearchParamChange = (
+    e: React.ChangeEvent<{ name?: string; value: unknown }>
+  ) => {
+    if (e.target.name) {
+      setCarSearchParams({
+        ...carSearchParams,
+        [e.target.name]: e.target.value,
+      });
+    }
   };
   const onApplyFilter = () => {
     setCarSearchRequestParams(carSearchParams);
@@ -135,57 +139,13 @@ const CarSearch = () => {
       <div className="list-wrapper">
         <div className="title-2 bold tile-item">Available cars</div>
         <div className="title-2 tile-item">
-          {`Showing ${carSearchResult.cars.length} of ${carSearchResult.totalCarsCount}`}
+          {`Showing ${isLoading ? 0 : carSearchResult.cars.length} of ${
+            carSearchResult.totalCarsCount
+          }`}
         </div>
         <div>
           {carSearchResult.cars.map((car: ICar, index: number) => (
-            <div key={index} className="car-tile">
-              {isLoading ? (
-                <div className="image-loading"></div>
-              ) : (
-                <img
-                  className="image-border"
-                  alt="Car"
-                  src={car.pictureUrl}
-                  width="90px"
-                  height="70px"
-                />
-              )}
-              <div className="car-content">
-                <div
-                  className={
-                    isLoading
-                      ? "title-2 bold tile-item loading"
-                      : "title-2 bold tile-item"
-                  }
-                >
-                  {`${car.manufacturerName} ${car.modelName}`}
-                </div>
-                <div
-                  className={
-                    isLoading
-                      ? "title-3 tile-item loading"
-                      : "title-3 tile-item"
-                  }
-                >
-                  {`Stock # ${car.stockNumber} - ${
-                    car.mileage?.number
-                  } ${car.mileage?.unit?.toLocaleUpperCase()} - ${
-                    car.fuelType
-                  } - ${car.color}`}
-                </div>
-                <Link
-                  className={
-                    isLoading
-                      ? "link tile-item loading"
-                      : "link tile-item title-3"
-                  }
-                  to={`/car-details/${car.stockNumber}`}
-                >
-                  View details
-                </Link>
-              </div>
-            </div>
+            <CarTile car={car} isLoading={isLoading} key={index} />
           ))}
         </div>
         <div className="pagination-wrapper">

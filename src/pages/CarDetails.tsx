@@ -13,49 +13,78 @@ const CarDetails = () => {
   const [hasError, setHasError] = React.useState<boolean>(false);
   const [favoriteStatus, toggleFavoriteStatus] = useLocalStorage(id);
   useEffect(() => {
+    window.scroll({ top: 0 });
     getCarDetailsAPI(id)
       .then(({ car }) => {
         setCarDetails(car);
       })
-      .catch((error) => {
+      .catch(() => {
         setHasError(true);
       });
   }, [id]);
 
+  if (hasError) {
+    return <NotFound />;
+  }
+
   return (
     <div className="page-details-wrapper">
-      {carDetails && (
-        <>
-          <img
-            src={carDetails.pictureUrl}
-            alt="Car"
-            className="car-detail-image"
-          />
-          <div className="center-align details-wrapper">
-            <div className="details-layout">
-              <div className="title-1 bold bottom-margin">{`${carDetails.manufacturerName} ${carDetails.modelName}`}</div>
-              <div className="title-2 bottom-margin">
-                {`Stock # ${carDetails.stockNumber} - ${
-                  carDetails?.mileage?.number
-                } - ${carDetails?.mileage?.unit?.toUpperCase()} - ${
-                  carDetails.fuelType
-                } - ${carDetails.color}`}
-              </div>
-              <div className="title-3 bottom-margin">{carDescription}</div>
-            </div>
-            <div className="fav-box title-3">
-              <div>{chooseFavoriteDescription}</div>
-              <Button
-                className="button button-margin"
-                onClick={toggleFavoriteStatus as () => void}
-              >
-                {favoriteStatus ? "Remove" : "Save"}
-              </Button>
-            </div>
+      <div className="car-detail-image">
+        <img
+          src={carDetails?.pictureUrl}
+          alt="Car"
+          className="car-detail-image"
+        />
+      </div>
+      <div className="center-align details-wrapper">
+        <div className="details-layout">
+          <div
+            className={
+              !carDetails
+                ? "title-1 bold bottom-margin loading-element"
+                : "title-1 bold bottom-margin"
+            }
+          >
+            {carDetails &&
+              `${carDetails.manufacturerName} ${carDetails.modelName}`}
           </div>
-        </>
-      )}
-      {hasError && <NotFound />}
+          <div
+            className={
+              !carDetails
+                ? "title-2 bottom-margin loading-element"
+                : "title-2 bottom-margin"
+            }
+          >
+            {carDetails &&
+              `Stock # ${carDetails.stockNumber} - ${
+                carDetails.mileage?.number
+              } - ${carDetails.mileage?.unit?.toUpperCase()} - ${
+                carDetails.fuelType
+              } - ${carDetails.color}`}
+          </div>
+          <div
+            className={
+              !carDetails
+                ? "title-3 bottom-margin loading-element"
+                : "title-3 bottom-margin"
+            }
+          >
+            {carDescription}
+          </div>
+        </div>
+        <div className="fav-box title-3">
+          <div className={!carDetails ? "loading-element" : ""}>
+            {chooseFavoriteDescription}
+          </div>
+          <Button
+            className="button button-margin"
+            disabled={!carDetails}
+            onClick={toggleFavoriteStatus as () => void}
+          >
+            {favoriteStatus ? "Remove" : "Save"}
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };

@@ -14,7 +14,6 @@ const NotFound = () => {
         You can always go back to the
         <span>
           <Link className="link" to="/car-search">
-            {" "}
             homepage
           </Link>
         </span>
