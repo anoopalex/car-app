@@ -3,11 +3,11 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { render, fireEvent, waitFor, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import CarSearch from "../pages/CarSearch";
+import CarSearch from "../CarSearch";
 import { createBrowserHistory } from "history";
 import { Router } from "react-router-dom";
-import { baseUrl, getInitialCarMockData } from "../constants";
-import { ICarSearchResult } from "../types";
+import { baseUrl, getInitialCarMockData } from "../../constants";
+import { ICarSearchResult } from "../../types";
 
 const history = createBrowserHistory();
 const mockSearchResult: ICarSearchResult = {
@@ -37,6 +37,7 @@ test("Displays car search page", async () => {
   expect(screen.getByText("Next")).toBeInTheDocument();
   expect(screen.getByText("Last")).toBeInTheDocument();
   const paginationElement = screen.getByText("Showing 10 of 0");
+  
   // Perform search
   fireEvent.click(screen.getByText("First"));
   await waitFor(() => screen.getByText("Showing 10 of 100"));
