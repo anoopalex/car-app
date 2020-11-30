@@ -32,7 +32,12 @@ test("Displays car search page", async () => {
       <CarSearch />
     </Router>
   );
-  const paginationElement = screen.getByText("Showing 0 of 0");
+  expect(screen.getByText("First")).toBeInTheDocument();
+  expect(screen.getByText("Previous")).toBeInTheDocument();
+  expect(screen.getByText("Next")).toBeInTheDocument();
+  expect(screen.getByText("Last")).toBeInTheDocument();
+  const paginationElement = screen.getByText("Showing 10 of 0");
+  // Perform search
   fireEvent.click(screen.getByText("First"));
   await waitFor(() => screen.getByText("Showing 10 of 100"));
   expect(paginationElement).toHaveTextContent("Showing 10 of 10");
